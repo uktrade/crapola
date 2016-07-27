@@ -20,3 +20,5 @@ Use Python to convert the file:
 
 The file at location ``csv filename`` should now contain a CSV version of the
 data exported from Dynamics.
+
+Running the test suite requires py.test

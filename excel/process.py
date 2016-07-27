@@ -39,7 +39,7 @@ class XLSTableParser(HTMLParser):
                 return True
 
         elif tag == 'tr':
-            self._output += ','.join(self._row_items)
+            self._output += '"{0}"'.format('","'.join(self._row_items))
             self._output += '\n'
             self._row_items = []
             return True

@@ -1,6 +1,6 @@
 from pytest import fixture
 
-from .process import XLSTableParser
+from process import XLSTableParser
 
 
 @fixture()
@@ -75,7 +75,7 @@ class TestEndTag:
         result = parser.handle_endtag('tr')
 
         assert result is True
-        assert parser._output == '__STUFF__\n__A__,__B__,__C__\n'
+        assert parser._output == '__STUFF__\n"__A__","__B__","__C__"\n'
         assert parser._row_items == []
 
     def test_happy_td_found(self, parser):
@@ -128,5 +128,16 @@ class TestParser:
 
         parser.feed(data)
 
-        expected_output = 'First,Second,Third\n1,2,3\n'
+        expected_output = '"First","Second","Third"\n"1","2","3"\n'
+        assert parser._output == expected_output
+
+    def test_infield_comma(self, parser):
+        data = (
+            '<html><tr><td>First, thirst</td><td>Second, reckoned</td><td>Third<td></tr>'
+            '<tr><td>1</td><td>2</td><td>3</td></tr>'
+        )
+
+        parser.feed(data)
+
+        expected_output = '"First, thirst","Second, reckoned","Third"\n"1","2","3"\n'
         assert parser._output == expected_output

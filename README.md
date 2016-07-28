@@ -17,7 +17,10 @@ Created a new tool as a side-effect of your UKTI work? Please share it here.
 ## Tools
 
 * [Excel HTML to CSV converter](excel) - Convert HTML files that contain Excel
-    readable data into CSV files.
+  readable data into CSV files.
+* [CSV to JSON converter](csv-json) - Convert CSV files to JSON, where each row
+  becomes an object in an array. It is assumed that the first row in the CSV
+  defines column names.
 
 ## License
 
